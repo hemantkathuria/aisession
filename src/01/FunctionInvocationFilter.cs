@@ -17,7 +17,7 @@ namespace _01
         {
             if (context.Function.PluginName == "SearchPlugin")
             {
-                Console.WriteLine($"{context.Function.Name}:{JsonSerializer.Serialize(context.Arguments)}\n");
+                Console.WriteLine($"*******{context.Function.Name}:{JsonSerializer.Serialize(context.Arguments)}\n");
             }
             await next(context);
         }

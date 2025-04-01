@@ -12,10 +12,10 @@
 
 //Console.WriteLine("Hello, World!");
 
-////SHOWS How to use Bing Text Search with and without RAG ************
+//// 01- This sample SHOWS How to use Bing Text Search with RAG. First part of sample makes a call with no bing search output and second one includes the bing search output as a part of prompt ************
 //// Direct use of bing search and with plugin in RAG
 
-//#region
+//#region ADD BING KEY BELOW FOR THIS TO RUN
 //string apiKey = "";
 //#endregion
 
@@ -38,7 +38,9 @@
 ////Similary Google Text Search is also available by Sementic Kernel
 ////var textSearch = new GoogleTextSearch(searchEngineId: "<Your Google Search Engine Id>",apiKey: "<Your Google API Key>");
 
+//Console.WriteLine("Hit enter to continue. Above are just the bing search result. It shows how easily use can use BingTextSearch class from Sementic kernel");
 //Console.ReadLine();
+
 
 
 //IKernelBuilder kernelBuilder = Kernel.CreateBuilder();
