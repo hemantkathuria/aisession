@@ -1,0 +1,77 @@
+import random
+import time
+
+class Point:
+    """Represents a point in 2D space."""
+
+    def __init__(self, x, y):
+        """Initializes a Point object."""
+        self.x = x
+        self.y = y
+
+    def __repr__(self):
+        """Returns a string representation of the Point."""
+        return f"({self.x:.2f}, {self.y:.2f})"
+
+def generate_random_points(num_points=100):
+    """Generates a list of Point objects with random coordinates."""
+    points = []
+    for _ in range(num_points):
+        x = random.uniform(0, 100)
+        y = random.uniform(0, 100)
+        points.append(Point(x, y))
+    return points
+
+def calculate_distance(point1, point2):
+    """Calculates the Euclidean distance between two Point objects."""
+    return ((point2.x - point1.x) ** 2 + (point2.y - point1.y) ** 2) ** 0.5
+
+def calculate_all_distances(points):
+    """Calculates the distance between each pair of Point objects."""
+    distances = {}
+    for i in range(len(points)):
+        for j in range(i + 1, len(points)):
+            distance = calculate_distance(points[i], points[j])
+            distances[(i, j)] = distance
+    return distances
+
+def find_closest_points(distances):
+    """Finds the closest pair of Point objects based on calculated distances."""
+    min_distance = float('inf')
+    closest_pair = None
+    for pair, distance in distances.items():
+        if distance < min_distance:
+            min_distance = distance
+            closest_pair = pair
+    return closest_pair, min_distance
+
+def display_results(points, closest_pair, min_distance, execution_time):
+    """Displays the results in a formatted way."""
+    if closest_pair:
+        point1_index, point2_index = closest_pair
+        point1 = points[point1_index]
+        point2 = points[point2_index]
+
+        print("Closest Points:")
+        print(f"Point 1 (Index {point1_index}): {point1}")
+        print(f"Point 2 (Index {point2_index}): {point2}")
+        print(f"Minimum Distance: {min_distance:.4f}")
+        print(f"Execution Time: {execution_time:.4f} seconds")
+    else:
+        print("No closest pair found.")
+
+def main():
+    """Main function to execute the program."""
+    num_points = 50  # Adjust the number of points as needed
+    points = generate_random_points(num_points)
+
+    start_time = time.time()
+    distances = calculate_all_distances(points)
+    closest_pair, min_distance = find_closest_points(distances)
+    end_time = time.time()
+    execution_time = end_time - start_time
+
+    display_results(points, closest_pair, min_distance, execution_time)
+
+if __name__ == "__main__":
+    main()
