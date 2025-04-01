@@ -14,7 +14,8 @@ using StackExchange.Redis;
 //Summary//
 // This sample demonstrates how to use the Semantic Kernel to ingest data into a Redis vector store.
 // Sementic kernel has provided abstraction with the help of IVectorStore. Hence changing the vector store will only need changes at the time of start up and not across the code.
-// REDIS Enterprise cluster is must. Also ensure RedisJSON, RediSearch modules are ENABLED
+// REDIS Enterprise cluster is must. Also ensure RedisJSON, RediSearch modules are ENABLED. User is listed in Managed Identity section.
+// Ensure user has Cognitive Services OpenAI User and  Cognitive Services User on the Azure Open AI
 // See https://aka.ms/new-console-template for more information
 // See https://learn.microsoft.com/en-us/semantic-kernel/concepts/vector-store-connectors/how-to/vector-store-data-ingestion?pivots=programming-language-csharp
 Console.WriteLine("Sample Ingestion!");
