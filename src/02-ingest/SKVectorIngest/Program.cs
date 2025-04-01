@@ -11,7 +11,10 @@ using StackExchange.Redis;
 #pragma warning disable SKEXP0020 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 #pragma warning disable SKEXP0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 
-
+//Summary//
+// This sample demonstrates how to use the Semantic Kernel to ingest data into a Redis vector store.
+// Sementic kernel has provided abstraction with the help of IVectorStore. Hence changing the vector store will only need changes at the time of start up and not across the code.
+// REDIS Enterprise cluster is must. Also ensure RedisJSON, RediSearch modules are ENABLED
 // See https://aka.ms/new-console-template for more information
 // See https://learn.microsoft.com/en-us/semantic-kernel/concepts/vector-store-connectors/how-to/vector-store-data-ingestion?pivots=programming-language-csharp
 Console.WriteLine("Sample Ingestion!");
@@ -53,7 +56,8 @@ var kernel = builder.Build();
 var dataUploader = kernel.Services.GetRequiredService<DataUploader>();
 
 
-//// Load the data.
+#region Load Data
+//// This section loads the data. Comment the section for next runs. 
 //var textParagraphs = DocumentReader.ReadParagraphs(
 //    new FileStream(
 //        "vector-store-data-ingestion-input.docx",
@@ -64,6 +68,8 @@ var dataUploader = kernel.Services.GetRequiredService<DataUploader>();
 //    collectionName,
 //    textParagraphs);
 
+#endregion Load Data
+
 
 ITextEmbeddingGenerationService textEmbeddingGenerationService = kernel.Services.GetRequiredService<ITextEmbeddingGenerationService>();
 
@@ -71,6 +77,8 @@ IVectorStore vectorStore = kernel.Services.GetRequiredService<IVectorStore>();
 
 // Search the collection using a vector search.
 //var searchString = "For any questions whom to reach?";
+
+//perform the SECOND ATTEMPT with below question. The document is having charles team information in hindi. But we are asking the question in english. still it will return the right response.
 var searchString = "what is the responsibility of charles team?";
 
 var searchVector = await textEmbeddingGenerationService.GenerateEmbeddingAsync(searchString);
